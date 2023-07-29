@@ -1,0 +1,5 @@
+Plugin
+{
+	file		"addons/sourcemod/extensions/PhysSwapper.ext.2.tf2.dll" [!$LINUX]
+	file		"addons/sourcemod/extensions/PhysSwapper.ext.2.tf2.so" [$LINUX]
+}

@@ -1,0 +1,20 @@
+# vim: set sts=2 ts=8 sw=2 tw=99 et ft=python:
+import os, sys
+
+project = builder.LibraryProject('PhysSwapper.ext')
+project.sources = [
+  'extension.cpp',
+  'kv/KeyValue.cpp',
+  os.path.join(Extension.sm_root, 'public', 'smsdk_ext.cpp'),
+]
+
+for sdk_name in Extension.sdks:
+  sdk = Extension.sdks[sdk_name]
+
+  for cxx in builder.targets:
+    if not cxx.target.arch in sdk.platformSpec[cxx.target.platform]:
+      continue
+    
+    binary = Extension.HL2ExtConfig(project, builder, cxx, 'PhysSwapper.ext.' + sdk.ext, sdk)
+
+Extension.extensions = builder.Add(project)
